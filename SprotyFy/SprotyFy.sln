@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventEoursingWorkshop.API", "EventEoursingWorkshop.API\EventEoursingWorkshop.API.csproj", "{E3D04BF8-EB4D-4C16-8673-7FE9FC197A25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SprotFy.Controller", "SprotFy.Controller\SprotFy.Controller.csproj", "{E3D04BF8-EB4D-4C16-8673-7FE9FC197A25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
