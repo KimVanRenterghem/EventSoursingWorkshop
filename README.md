@@ -18,7 +18,19 @@ This app is a tutorial to get the feeling wath you can do with event sourcing.
     > look in the web tool to the events 
 3. create app which displays the playing song for a user
     > do this by reading only the last event of the stream (position -1)
-4. start en remove the songs from a playlist thru the api and fire the events
+    ```csharp
+    var eveTask = connection.ReadEventAsync(stream, -1, true);
+    var eve = eveTask.Result;
+
+    var ev = eve.Event?.Event;
+    if (ev != null)
+    {
+        //event type validation
+        var json = Encoding.UTF8.GetString(ev.Data);
+        var songStart = JsonConvert.DeserializeObject<SongPlayingStarted>(json);
+    }
+    ```
+4. add en remove the songs from a playlist thru the api and fire the events
 5. create a playlist from the playlist stream
     > read the plailist stream and project it into the model
 6. give top 10 list of most played songs
