@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SprotFy.Controller.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/PlayList")]
     public class PlayListController : Microsoft.AspNetCore.Mvc.Controller
     {
         // GET api/values
