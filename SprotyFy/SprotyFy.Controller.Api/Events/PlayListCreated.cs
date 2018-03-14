@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SprotFy.Controller.Events
+namespace SprotyFy.Controller.Api.Events
 {
-    public class PlayListCreated
+    public class PlayListCreated 
     {
         public string Uresid { get; set; }
         public Guid Id { get; set; }

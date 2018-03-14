@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace SprotFy.Controller.Events
+namespace SprotyFy.Controller.Api.Events
 {
-    public class SongToPlayListAdded
+    public class SongToPlayListAdded : IEvent
     {
         public string Userid { get; set; }
         public Guid PlayListId { get; set; }
         public Guid SongId { get; set; }
+        public string Stream()
+            => "UserSong_" + PlayListId;
+        public string EventName()
+            => "SongToPlayListAdded";
     }
 }

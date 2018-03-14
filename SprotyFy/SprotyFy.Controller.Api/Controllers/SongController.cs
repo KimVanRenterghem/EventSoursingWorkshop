@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using SprotFy.Controller.Models;
-using SprotFy.Controller.Repository;
-using SprotyFy.Controller.Api;
 using SprotyFy.Controller.Api.Events;
+using SprotyFy.Controller.Api.Models;
+using SprotyFy.Controller.Api.Repository;
 
-namespace SprotFy.Controller.Controllers
+namespace SprotyFy.Controller.Api.Controllers
 {
     [Route("api/Song")]
     public class SongController 

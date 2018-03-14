@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace SprotFy.Controller.Events
+namespace SprotyFy.Controller.Api.Events
 {
     public class SongFromPlayListRemoved
     {

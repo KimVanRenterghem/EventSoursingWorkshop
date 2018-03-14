@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SprotFy.Controller.Models
+namespace SprotyFy.Controller.Api.Models
 {
     public class Song
     {

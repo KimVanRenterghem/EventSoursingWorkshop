@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SprotFy.Controller.Controllers
+namespace SprotyFy.Controller.Api.Controllers
 {
     [Route("api/PlayList")]
     public class PlayListController : Microsoft.AspNetCore.Mvc.Controller

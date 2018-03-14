@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using SprotFy.Controller.Models;
+using SprotyFy.Controller.Api.Models;
 
-namespace SprotFy.Controller.Repository
+namespace SprotyFy.Controller.Api.Repository
 {
     public static class SongsRepository
     {
