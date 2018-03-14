@@ -7,7 +7,7 @@ namespace SprotyFy.Controller.Api.Models
     {
         public string Userid { get; set; }
         public Guid PlayListId { get; set; }
-        public Guid SongId { get; set; }
         public IEnumerable<Song> Songs { get; set; }
+        public string Name { get; set; }
     }
 }

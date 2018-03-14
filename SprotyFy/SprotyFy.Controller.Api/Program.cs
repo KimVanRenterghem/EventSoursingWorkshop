@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using SprotyFy.Controller.Api.Models;
 
 namespace SprotyFy.Controller.Api
 {
@@ -14,7 +15,11 @@ namespace SprotyFy.Controller.Api
     {
         public static void Main(string[] args)
         {
-
+            Task.Run(() =>
+            {//consider usning projections of eventstore and only use the playlist stream
+               new EventConsumer()
+                .Start("PlayList_624dfc95-1fb8-482e-819f-dd51972ed1f7", new PlayListProjector());
+            });
             BuildWebHost(args).Run();
         }
 

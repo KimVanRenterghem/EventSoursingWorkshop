@@ -8,7 +8,7 @@ namespace SprotyFy.Controller.Api.Events
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Stream()
-            => "UserSong_" + Id;
+            => "PlayList_" + Id;
 
         public string EventName()
             => "PlayListCreated";

@@ -2,14 +2,14 @@
 
 namespace SprotyFy.Controller.Api.Events
 {
-    public class SongToPlayListAdded : IEvent
+    public class SongFromPlayListRemoved : IEvent
     {
         public string Userid { get; set; }
         public Guid PlayListId { get; set; }
         public Guid SongId { get; set; }
         public string Stream()
-            => "UserSong_" + PlayListId;
+            => "PlayList_" + PlayListId;
         public string EventName()
-            => "SongToPlayListAdded";
+            => "SongFromPlayListRemoved";
     }
 }
