@@ -7,5 +7,6 @@ namespace SprotFy.Controller.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Artist { get; set; }
+        public int Lenth { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace SprotyFy.Controller.Api
     {
         public static void Main(string[] args)
         {
+
             BuildWebHost(args).Run();
         }
 
