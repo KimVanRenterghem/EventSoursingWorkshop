@@ -7,18 +7,16 @@ This app is a tutorial to get the feeling wath you can do with event sourcing.
 1. create workspase :
     1. unzip the eventstore in the tools folder
     2. unzip the curl in the tools folder
-    3. add the curl / eventstore path to the PATH Environment Variable in Windows
-        ```cmd
-        setx PATH %PATH%;C:\curl\
-        setx PATH %PATH%;C:\eventstore\
-        ```
+    3. add the C:\curl\ and C:\eventstore\ path to the PATH Environment Variable in Windows
     4. start eventstore
         ```cmd
         EventStore.ClusterNode.exe --db C:\eventstore\db --log C:\eventstore\logs
         ``` 
-2. create app which displays the playing song for a user
+        > now you can watch your store at http://127.0.0.1:2113/
+        > user admin pass changeit
+2. start en stop the song thru the api and fire the events
+3. create app which displays the playing song for a user
     > do this by reading only the last event of the stream (position -1)
-3. start en stop the song thru the api and fire the events
 4. start en remove the songs from a playlist thru the api and fire the events
 5. create a playlist from the playlist stream
     > read the plailist stream and project it into the model
