@@ -8,7 +8,7 @@ namespace SprotyFy.Controller.Api.Events
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Stream()
-            => "PlayList_" + Id;
+            => "playlist-" + Id.ToString().Replace("-","");
 
         public string EventName()
             => "PlayListCreated";

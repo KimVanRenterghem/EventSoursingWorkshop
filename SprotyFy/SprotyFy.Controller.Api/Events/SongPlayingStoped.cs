@@ -8,7 +8,7 @@ namespace SprotyFy.Controller.Api.Events
         public Guid SongId { get; set; }
         public int Sec { get; set; }
         public string Stream()
-            => "usersong-" + Userid;
+            => "usersong-" + Userid.Replace("-", "");
         public string EventName()
             => "SongPlayingStoped";
     }

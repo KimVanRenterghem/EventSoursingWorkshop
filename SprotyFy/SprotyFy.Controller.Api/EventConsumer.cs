@@ -8,6 +8,7 @@ using SprotyFy.Controller.Api.Models;
 
 namespace SprotyFy.Controller.Api
 {
+    public delegate IProjector ProjectorFactory();
     public class EventConsumer
     {
         private IEventStoreConnection _connection;
@@ -16,11 +17,15 @@ namespace SprotyFy.Controller.Api
         {
             _connection =
                 EventStoreConnection.Create(new IPEndPoint(IPAddress.Loopback, 1113));
+
+            _connection.ConnectAsync().Wait();
+
         }
 
-        public async void Start(string streamName, IProjector projector)
+        public async void Start(string streamName, ProjectorFactory projectorFactory)
         {
-            await _connection.ConnectAsync();
+            var projector = projectorFactory();
+
             long pos = 0;
             while (true)
             {
@@ -29,7 +34,18 @@ namespace SprotyFy.Controller.Api
                 {
                     pos = slise.NextEventNumber;
 
-                    projector.Project(slise.Events);
+                    //create a stream for all the linked streames
+                    foreach (var e in slise.Events
+                        .Where(e => e.Link?.EventType == "$>"))
+                    {
+                        Start(e.Event.EventStreamId, projectorFactory);
+                    }
+
+                    var nonlinks = slise.Events
+                        .Where(e => e.Link == null)
+                        .ToList();
+
+                    projector.Project(nonlinks);
 
                 }
                 else
