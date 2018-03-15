@@ -10,7 +10,7 @@ namespace SprotyFy.Controller.Api.Events
         public int Sec { get; set; }
 
         public string Stream()
-            => "UserSong_" + Userid;
+            => "usersong-" + Userid;
         public string EventName()
             => "SongPlayingStarted";
     }
