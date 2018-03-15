@@ -22,7 +22,7 @@ namespace SprotyFy.Controller.Api
 
         }
 
-        public async void Start(string streamName, ProjectorFactory projectorFactory)
+        public async void Start(string streamName, ProjectorFactory projectorFactory, bool ignoreLinks = false)
         {
             var projector = projectorFactory();
 
@@ -34,15 +34,16 @@ namespace SprotyFy.Controller.Api
                 {
                     pos = slise.NextEventNumber;
 
-                    //create a stream for all the linked streames
-                    foreach (var e in slise.Events
-                        .Where(e => e.Link?.EventType == "$>"))
-                    {
-                        Start(e.Event.EventStreamId, projectorFactory);
-                    }
+                    if(!ignoreLinks)
+                        //create a stream for all the linked streames
+                        foreach (var e in slise.Events
+                            .Where(e => e.Link?.EventType == "$>"))
+                        {
+                            Start(e.Event.EventStreamId, projectorFactory);
+                        }
 
                     var nonlinks = slise.Events
-                        .Where(e => e.Link == null)
+                        .Where(e => e.Link == null || ignoreLinks)
                         .ToList();
 
                     projector.Project(nonlinks);

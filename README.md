@@ -47,9 +47,56 @@ This app is a tutorial to get the feeling what you can do with event sourcing.
     ```
     > now now all PlayListCreated events aar link to the stream Playlist
     > !! for this to work all streams shoold be lower case and a - between the streamname-id
+    ```csharp
+    public delegate IProjector ProjectorFactory();
+    ```
+    ```csharp
+    
+        public async void Start(string streamName, ProjectorFactory projectorFactory)
+        {
+            var projector = projectorFactory();
+
+            long pos = 0;
+            while (true)
+            {
+                var slise = await _connection.ReadStreamEventsForwardAsync(streamName, pos, 5, true);
+                if (pos < slise.NextEventNumber)
+                {
+                    pos = slise.NextEventNumber;
+
+                    //create a stream for all the linked streames
+                    foreach (var e in slise.Events
+                        .Where(e => e.Link?.EventType == "$>"))
+                    {
+                        Start(e.Event.EventStreamId, projectorFactory);
+                    }
+
+                    var nonlinks = slise.Events
+                        .Where(e => e.Link == null)
+                        .ToList();
+
+                    projector.Project(nonlinks);
+
+                }
+                else
+                {
+                    await Task.Delay(100);
+                }
+            }
+    ```
 6. give top 10 list of most played songs
     > do this by reading all the user play streams and rating the number of time a song is played
     > afterwards you can order them and create a new play list
+    >create new projection with the foloing script
+    ```js
+    fromCategory('usersong')
+    .foreachStream()
+    .when({
+        $any: function(state, ev){
+        linkTo('songs', ev)         
+        }      
+    });
+    ```
 7. a song should at least play for 20 sec to get in the list (rebuild your list)
     > change the preview step, drop the db and restart from position 0
 8. a son witch is stopt and started on the same sec should be considered not being stopped (rebuild your list)

@@ -6,8 +6,7 @@ namespace SprotyFy.Controller.Api.Repository
 {
     public static class SongsRepository
     {
-        public static IEnumerable<Song> Songs
-            => new[]
+        private static  IEnumerable<Song> _songs = new[]
             {
                 new Song
                 {
@@ -73,5 +72,8 @@ namespace SprotyFy.Controller.Api.Repository
                     Lenth = 30
                 }
             };
+
+        public static IEnumerable<Song> Songs
+            => _songs;
     }
 }

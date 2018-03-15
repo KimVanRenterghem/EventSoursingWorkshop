@@ -17,8 +17,9 @@ namespace SprotyFy.Controller.Api
         {
             Task.Run(() =>
             {//consider usning projections of eventstore and only use the playlist stream
-               new EventConsumer()
-                .Start("playlist",() => new PlayListProjector());
+                var consumer = new EventConsumer();
+                consumer.Start("playlist", () => new PlayListProjector());
+                consumer.Start("songs", () => new SongRatingProjector(), true);
             });
             BuildWebHost(args).Run();
         }

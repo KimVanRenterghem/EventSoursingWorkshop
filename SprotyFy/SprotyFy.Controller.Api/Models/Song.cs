@@ -8,5 +8,7 @@ namespace SprotyFy.Controller.Api.Models
         public string Name { get; set; }
         public string Artist { get; set; }
         public int Lenth { get; set; }
+
+        public int Played { get; set; }
     }
 }
