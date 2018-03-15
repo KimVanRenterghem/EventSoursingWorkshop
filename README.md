@@ -35,6 +35,18 @@ This app is a tutorial to get the feeling what you can do with event sourcing.
     > read the playlist stream and project it into the model
 
     > update projection $by_category set - to _
+    >create new projection with the foloing script
+    ```js
+    fromCategory('playlist')
+    .foreachStream()
+    .when({
+        PlayListCreated: function(state, ev){
+        linkTo('playlist', ev)         
+        }      
+    });
+    ```
+    > now now all PlayListCreated events aar link to the stream Playlist
+    > !! for this to work all streams shoold be lower case and a - between the streamname-id
 6. give top 10 list of most played songs
     > do this by reading all the user play streams and rating the number of time a song is played
     > afterwards you can order them and create a new play list
