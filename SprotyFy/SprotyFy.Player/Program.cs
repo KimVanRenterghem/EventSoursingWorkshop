@@ -17,7 +17,7 @@ namespace SprotyFy.Player
             connection.ConnectAsync().Wait();
             Console.WriteLine("enter username");
             var user = Console.ReadLine();
-            var stream = "UserSong_" + user;
+            var stream = "usersong-" + user;
 
             Song last = null;
             bool plaing = false;
